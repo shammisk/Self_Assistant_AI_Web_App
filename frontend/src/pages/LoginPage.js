@@ -94,7 +94,7 @@ const LoginPage = () => {
               <input
                 type="checkbox"
                 id="checkbox"
-                className="h-4 w-4 rounded mr-2 accent-[#4f4ded]"
+                className="h-4 w-4 rounded mr-2 accent-[#1ba122]"
                 checked={remember}
                 onChange={() => setRemember(!remember)}
               />
