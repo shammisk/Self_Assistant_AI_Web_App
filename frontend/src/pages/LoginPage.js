@@ -2,8 +2,8 @@ import { EnvelopeIcon, LockClosedIcon } from "@heroicons/react/24/outline";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import backgroundImage from "../assests/images/background.jpg";
-import loginImage from "../assests/images/login.jpg";
+import backgroundImage from "../assests/images/c.png";
+import loginImage from "../assests/images/logi.png";
 import Button from "../components/Button";
 import TextBox from "../components/TextBox";
 

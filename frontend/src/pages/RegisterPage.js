@@ -6,8 +6,8 @@ import {
 import axios from "axios";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import backgroundImage from "../assests/images/background.jpg";
-import loginImage from "../assests/images/reg.jpg";
+import backgroundImage from "../assests/images/c.png";
+import loginImage from "../assests/images/re.png";
 import Button from "../components/Button";
 import TextBox from "../components/TextBox";
 
