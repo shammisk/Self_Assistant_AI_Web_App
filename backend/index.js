@@ -3,6 +3,9 @@ const cors = require("cors");
 const mongoose = require("mongoose");
 require("dotenv").config();
 const userRoutes = require("./routes/user.routes");
+const chatGuideRoutes = require("./routes/chat.guide.routes");
+const chatTestRoutes = require("./routes/chat.test.routes");
+const annalysRoutes = require("./routes/annalys.routes");
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -23,9 +26,11 @@ db.once("open", () => {
   console.log("Connected to MongoDB");
 });
 
-
 // Routes
 app.use("/user", userRoutes);
+app.use("/chat-guide", chatGuideRoutes);
+app.use("/chat-test", chatTestRoutes);
+app.use("/annalys", annalysRoutes);
 
 // Start server
 app.listen(PORT, () => {

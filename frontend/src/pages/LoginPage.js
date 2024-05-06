@@ -1,6 +1,6 @@
-import React, { useState } from "react";
-import backgroundImage from "../assests/constants/images/background.jpg";
-import loginImage from "../assests/constants/images/login.png";
+import React, { useState, useEffect } from "react";
+import backgroundImage from "../assests/images/background.jpg";
+import loginImage from "../assests/images/login.jpg";
 import TextBox from "../components/TextBox";
 import Button from "../components/Button";
 import { EnvelopeIcon, LockClosedIcon } from "@heroicons/react/24/outline";
@@ -14,19 +14,37 @@ const LoginPage = () => {
 
   const navigate = useNavigate();
 
+  useEffect(() => {
+    // Check if there are saved credentials in local storage
+    const savedEmail = localStorage.getItem("email");
+    const savedPassword = localStorage.getItem("password");
+
+    if (savedEmail && savedPassword) {
+      setEmail(savedEmail);
+      setPassword(savedPassword);
+      setRemember(true);
+    }
+  }, []);
+
   const handleLogin = async (event) => {
     event.preventDefault();
     try {
-      await axios.post("http://localhost:5000/user/login", {
+      await axios.post(`https://self-assistant-ai-web-app-backend.vercel.app/user/login`, {
         email,
         password,
       });
+
+      localStorage.setItem("email", email);
+      // Save password in local storage if remember me is checked
+      if (remember) {
+        localStorage.setItem("password", password);
+      } else {
+        localStorage.removeItem("password");
+      }
+
       navigate("/chat");
     } catch (error) {
-      if (
-        error?.response?.data?.code === 13003 ||
-        error?.response?.data?.code === 13004
-      ) {
+      if (error?.response?.data?.code === 13003 || error?.response?.data?.code === 13004) {
         alert(error?.response?.data?.message);
       } else {
         alert(error?.response?.data?.message);
@@ -37,8 +55,7 @@ const LoginPage = () => {
   return (
     <div
       className="flex justify-center items-center bg-cover h-screen"
-      style={{ backgroundImage: `url(${backgroundImage})` }}
-    >
+      style={{ backgroundImage: `url(${backgroundImage})` }}>
       <div className="flex justify-center items-center w-4/5 h-4/5 m-4 p-4 bg-white rounded-xl">
         <div className="flex justify-center items-center w-3/5 mr-10 border-r-2 border-gray-300">
           <img src={loginImage} alt="Login" />
@@ -60,8 +77,8 @@ const LoginPage = () => {
             />
 
             <TextBox
-              placeholder="Enter your email"
-              label="Email"
+              placeholder="Enter your password"
+              label="Password"
               type="password"
               Icon={LockClosedIcon}
               value={password}
@@ -73,7 +90,7 @@ const LoginPage = () => {
               <input
                 type="checkbox"
                 id="checkbox"
-                className="h-4 w-4 rounded mr-2 accent-[#0402a8]"
+                className="h-4 w-4 rounded mr-2 accent-[#4f4ded]"
                 checked={remember}
                 onChange={() => setRemember(!remember)}
               />
