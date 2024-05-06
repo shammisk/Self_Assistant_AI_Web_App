@@ -15,7 +15,7 @@ const WelcomePage = () => {
       <div className="flex flex-row px-20 fixed top-0 right-0 left-0">
         <div className="flex flex-row justify-start w-1/2 py-4 item-center">
           <img src={logo} alt="logo" className="w-10 h-10 rounded-xl" />
-          <div className="font-serif text-2xl text-gray-700 font-bold tracking-widest ml-8 py-1">
+          <div className="font-serif text-2xl text-indigo-700 font-bold tracking-widest ml-8 py-1">
             AI Self Assistant
           </div>
         </div>
