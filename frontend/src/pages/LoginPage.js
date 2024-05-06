@@ -29,10 +29,13 @@ const LoginPage = () => {
   const handleLogin = async (event) => {
     event.preventDefault();
     try {
-      await axios.post(`${process.env.REACT_APP_BASE_URL}/user/login`, {
-        email,
-        password,
-      });
+      await axios.post(
+        `https://self-assistant-ai-web-app-backend-theta.vercel.app/user/login`,
+        {
+          email,
+          password,
+        }
+      );
 
       localStorage.setItem("email", email);
       // Save password in local storage if remember me is checked

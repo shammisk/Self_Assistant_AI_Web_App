@@ -25,7 +25,7 @@ const RegisterPage = () => {
     }
     try {
       const response = await axios.post(
-        `${process.env.REACT_APP_BASE_URL}/user/register`,
+        `https://self-assistant-ai-web-app-backend-theta.vercel.app/user/register`,
         {
           name,
           email,
