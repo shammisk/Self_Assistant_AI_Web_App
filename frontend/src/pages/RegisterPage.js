@@ -1,38 +1,43 @@
-import React, { useState } from "react";
-import backgroundImage from "../assests/constants/images/background.jpg";
-import loginImage from "../assests/constants/images/reg.jpg";
-import TextBox from "../components/TextBox";
-import Button from "../components/Button";
 import {
-  UserIcon,
   EnvelopeIcon,
   LockClosedIcon,
+  UserIcon,
 } from "@heroicons/react/24/outline";
-import { Link } from "react-router-dom";
 import axios from "axios";
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import backgroundImage from "../assests/images/c.png";
+import loginImage from "../assests/images/re.png";
+import Button from "../components/Button";
+import TextBox from "../components/TextBox";
 
 const RegisterPage = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [conpassword, setConpassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (password !== conpassword) {
+    if (password !== confirmPassword) {
       alert("Passwords do not match");
       return;
     }
     try {
-      const response = await axios.post("http://localhost:5000/user/register", {
-        name,
-        email,
-        password,
-      });
+      const response = await axios.post(
+        `${process.env.REACT_APP_BASE_URL}/user/register`,
+        {
+          name,
+          email,
+          password,
+        }
+      );
+
       setName("");
       setEmail("");
       setPassword("");
-      setConpassword("");
+      setConfirmPassword("");
+
       alert(response?.data?.message);
     } catch (error) {
       if (error?.response?.data?.code === 13001) {
@@ -93,8 +98,8 @@ const RegisterPage = () => {
               label="Confirm Password"
               type="password"
               Icon={LockClosedIcon}
-              value={conpassword}
-              setValue={setConpassword}
+              value={confirmPassword}
+              setValue={setConfirmPassword}
               required={true}
             />
 

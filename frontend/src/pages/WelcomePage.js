@@ -1,134 +1,118 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import backgroundImage from "../assests/constants/images/background.jpg";
-import logo from "../assests/constants/images/logo.png";
-import W1Image from "../assests/constants/images/slide1.jpg";
-import W2Image from "../assests/constants/images/slide2.jpeg";
+import backgroundImage from "../assests/images/c.png";
+import logo from "../assests/images/chatbot.png";
+import About from "../assests/images/a.jpg";
+import W1Image from "../assests/images/b.jpg";
+import W2Image from "../assests/images/cc.png";
 
 const WelcomePage = () => {
   return (
-    <div className="bg-cover" style={{ backgroundImage: `url(${backgroundImage})` }}>
-      <div className="flex flex-row px-5">
+    <div
+      className="bg-cover min-h-screen"
+      style={{ backgroundImage: `url(${backgroundImage})` }}
+    >
+      <div className="flex flex-row px-20 fixed top-0 right-0 left-0">
         <div className="flex flex-row justify-start w-1/2 py-4 item-center">
-          <img src={logo} alt="logo" className="w-10 h-10" />
-          <div className="font-serif text-2xl text-white tracking-widest ml-8 py-1">Tech Pack</div>
+          <img src={logo} alt="logo" className="w-10 h-10 rounded-xl" />
+          <div className="font-serif text-2xl text-indigo-700 font-bold tracking-widest ml-8 py-1">
+            AI Self Assistant
+          </div>
         </div>
         <div className="flex flex-row justify-end w-1/2 py-4 item-center">
-          <Link to="/register" className="text-white px-5 py-2 mx-2 rounded ring-2">
+          <Link
+            to="/register"
+            className="text-white px-5 py-2 mx-2 rounded bg-teal-500 hover:bg-teal-300 ring-2"
+          >
             Sign Up
           </Link>
-          <Link to="/login" className="text-white px-5 py-2 mx-2 rounded ring-2">
+          <Link
+            to="/login"
+            className="text-white px-5 py-2 mx-2 rounded bg-teal-500 hover:bg-teal-300 ring-2"
+          >
             Sign In
           </Link>
         </div>
       </div>
 
-      <div className="relative">
-        <div
-          style={{
-            width: "100%",
-            height: "900px", // Adjust the height as needed
-            backgroundColor: "#dfe6e8",
-            position: "relative",
-          }}
-        >
-          {/* First Box */}
-          <div
-            style={{
-              position: "absolute",
-              top: "70px", // Adjust the top position as needed
-              left: "68%",
-              transform: "translateX(-50%)",
-              width: "850px", // Adjust the width as needed
-              height: "250px", // Adjust the height as needed
-              backgroundColor: "#fff", // Box color
-              border: "2px solid #000", // Border color
-              borderRadius: "10px", // Border radius
-              padding: "20px", // Add padding for the paragraph
-            }}
-          >
-            <p
-              style={{
-                textAlign: "center", // Text justification
-                color: "#333", // Font color
-                fontSize: "18px", // Font size
-              }}
-            >
-              Do you have a dream to work in the ICT field? So this platform for you. 
-            </p>
+      <div className="flex flex-col gap-5 px-20 py-4">
+        <div className="flex justify-start mt-16">
+          <div className="w-3/5 flex flex-row h-52 bg-cyan-700 bg-opacity-80 rounded-lg">
+            <div className="w-1/2">
+              <img
+                src={About}
+                alt="about"
+                className="h-full w-full border rounded-l-lg"
+              />
+            </div>
+            <div className="w-1/2 p-6 flex items-center justify-center">
+              <p className="text-white text-md text-justify">
+                About
+                <br />
+                <br />
+                "This platform combines a chat interface and a dashboard. It can
+                be assist you to testing the knowledge level in your skills and
+                providing career guidance with the AI technology."
+              </p>
+            </div>
           </div>
+        </div>
 
-          {/* W1 Image */}
-          <img
-            src={W1Image}
-            alt="w1 image"
-            style={{
-              maxWidth: "500px",
-              width: "100%",
-              height: "300px",
-              marginLeft: "-450px",
-              position: "absolute",
-              top: "200px",
-              left: "50%",
-              transform: "translate(-50%, -50%)",
-              border: "2px solid #000",
-              borderRadius: "10px",
-            }}
-          />
-
-          {/* Second Box */}
-          <div
-            style={{
-              position: "absolute",
-              top: "435px", // Adjust the top position as needed
-              left: "32%",
-              transform: "translateX(-50%)",
-              width: "850px", // Adjust the width as needed
-              height: "250px", // Adjust the height as needed
-              backgroundColor: "#fff", // Box color
-              border: "2px solid #000", // Border color
-              borderRadius: "10px", // Border radius
-              padding: "20px", // Add padding for the paragraph
-            }}
-          >
-            <p
-              style={{
-                textAlign: "center", // Text justification
-                color: "#333", // Font color
-                fontSize: "18px", // Font size
-              }}
-            >
-              Do you have a dream to work in the ICT field?
-            </p>
+        <div className="flex justify-end">
+          <div className="w-3/5 flex flex-row h-52 bg-cyan-700 bg-opacity-80 rounded-lg">
+            <div className="w-1/2">
+              <img
+                src={W1Image}
+                alt="w1"
+                className="h-full w-full border rounded-l-lg"
+              />
+            </div>
+            <div className="w-1/2 p-6 flex items-center justify-center">
+              <p className="text-white text-md text-justify">
+                Do you want career guidance?
+                <br />
+                <br />
+                "We provide personalized career guidance and advice based on
+                your interests and skills with AI technology. Additionally, we
+                provide recommendations to help you navigate and excel in your
+                career path."
+              </p>
+            </div>
           </div>
+        </div>
 
-          {/* W2 Image */}
-          <img
-            src={W2Image}
-            alt="w2 image"
-            style={{
-              maxWidth: "500px",
-              width: "100%",
-              height: "300px",
-              marginLeft: "450px",
-              position: "absolute",
-              top: "550px",
-              left: "50%",
-              transform: "translate(-50%, -50%)",
-              border: "2px solid #000",
-              borderRadius: "10px",
-            }}
-          />
+        <div className="flex justify-start">
+          <div className="w-3/5 flex flex-row h-52 bg-cyan-700 bg-opacity-80 rounded-lg">
+            <div className="w-1/2">
+              <img
+                src={W2Image}
+                alt="w1"
+                className="h-full w-full border rounded-l-lg"
+              />
+            </div>
+            <div className="w-1/2 p-6 flex items-center justify-center">
+              <p className="text-white text-md text-justify">
+                Do you want to test your knowledge level in skills?
+                <br />
+                <br />
+                "We provide a facility to check your knowledge level through a
+                chat interface with AI technology."
+              </p>
+            </div>
+          </div>
         </div>
       </div>
 
-      <div className="pb-5">
-        <div className="text-white flex justify-center">Copyright 2024 Teck Pack. All Rights Reserved</div>
-        <div className="text-white flex justify-center">Designed by Shammi</div>
+      <div className="pb-5 mt-4">
+        <div className="text-gray-700 text-sm font-semibold flex justify-center">
+          Copyright © 2024 by Shammi Gamage, All rights reserved.
+        </div>
+        <div className="text-white text-md flex justify-center">
+          Designed by Shammi
+        </div>
       </div>
     </div>
   );
 };
 
 export default WelcomePage;
-

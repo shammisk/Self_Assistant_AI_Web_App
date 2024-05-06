@@ -1,11 +1,11 @@
-import React, { useState } from "react";
-import backgroundImage from "../assests/constants/images/background.jpg";
-import loginImage from "../assests/constants/images/login.png";
-import TextBox from "../components/TextBox";
-import Button from "../components/Button";
 import { EnvelopeIcon, LockClosedIcon } from "@heroicons/react/24/outline";
-import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import React, { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import backgroundImage from "../assests/images/c.png";
+import loginImage from "../assests/images/logi.png";
+import Button from "../components/Button";
+import TextBox from "../components/TextBox";
 
 const LoginPage = () => {
   const [email, setEmail] = useState("");
@@ -14,13 +14,34 @@ const LoginPage = () => {
 
   const navigate = useNavigate();
 
+  useEffect(() => {
+    // Check if there are saved credentials in local storage
+    const savedEmail = localStorage.getItem("email");
+    const savedPassword = localStorage.getItem("password");
+
+    if (savedEmail && savedPassword) {
+      setEmail(savedEmail);
+      setPassword(savedPassword);
+      setRemember(true);
+    }
+  }, []);
+
   const handleLogin = async (event) => {
     event.preventDefault();
     try {
-      await axios.post("http://localhost:5000/user/login", {
+      await axios.post(`${process.env.REACT_APP_BASE_URL}/user/login`, {
         email,
         password,
       });
+
+      localStorage.setItem("email", email);
+      // Save password in local storage if remember me is checked
+      if (remember) {
+        localStorage.setItem("password", password);
+      } else {
+        localStorage.removeItem("password");
+      }
+
       navigate("/chat");
     } catch (error) {
       if (
@@ -60,8 +81,8 @@ const LoginPage = () => {
             />
 
             <TextBox
-              placeholder="Enter your email"
-              label="Email"
+              placeholder="Enter your password"
+              label="Password"
               type="password"
               Icon={LockClosedIcon}
               value={password}
@@ -73,7 +94,7 @@ const LoginPage = () => {
               <input
                 type="checkbox"
                 id="checkbox"
-                className="h-4 w-4 rounded mr-2 accent-[#0402a8]"
+                className="h-4 w-4 rounded mr-2 accent-[#1ba122]"
                 checked={remember}
                 onChange={() => setRemember(!remember)}
               />
