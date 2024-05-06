@@ -1,8 +1,12 @@
-import React, { useState, useEffect } from "react";
+import {
+  EnvelopeIcon,
+  LockClosedIcon,
+  UserIcon,
+} from "@heroicons/react/24/outline";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 import Button from "../Button";
 import TextBox from "../TextBox";
-import { EnvelopeIcon, LockClosedIcon, UserIcon } from "@heroicons/react/24/outline";
-import axios from "axios";
 
 function EditProfile() {
   const [id, setId] = useState("");
@@ -19,7 +23,7 @@ function EditProfile() {
         }
 
         const response = await axios.get(
-          `https://self-assistant-ai-web-app-backend.vercel.app/user/getuserbyemail`,
+          `${process.env.REACT_APP_BASE_URL}/user/getuserbyemail`,
           {
             params: { email },
           }
@@ -53,7 +57,7 @@ function EditProfile() {
 
     try {
       const response = await axios.put(
-        `https://self-assistant-ai-web-app-backend.vercel.app/user/update/${id}`,
+        `${process.env.REACT_APP_BASE_URL}/user/update/${id}`,
         userData
       );
 
@@ -76,8 +80,18 @@ function EditProfile() {
         <p className="font-sans text-gray-400 text-lg text-center font-semibold tracking-widest mb-10">
           Update Your Information
         </p>
-        <form className="flex flex-col gap-4 mr-10 ml-4" onSubmit={handleUpdate}>
-          <TextBox label="Name" type="text" Icon={UserIcon} value={name} setValue={setName} required={true} />
+        <form
+          className="flex flex-col gap-4 mr-10 ml-4"
+          onSubmit={handleUpdate}
+        >
+          <TextBox
+            label="Name"
+            type="text"
+            Icon={UserIcon}
+            value={name}
+            setValue={setName}
+            required={true}
+          />
 
           <TextBox
             label="Email"

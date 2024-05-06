@@ -1,11 +1,15 @@
+import {
+  EnvelopeIcon,
+  LockClosedIcon,
+  UserIcon,
+} from "@heroicons/react/24/outline";
+import axios from "axios";
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import backgroundImage from "../assests/images/background.jpg";
 import loginImage from "../assests/images/reg.jpg";
-import TextBox from "../components/TextBox";
 import Button from "../components/Button";
-import { UserIcon, EnvelopeIcon, LockClosedIcon } from "@heroicons/react/24/outline";
-import { Link } from "react-router-dom";
-import axios from "axios";
+import TextBox from "../components/TextBox";
 
 const RegisterPage = () => {
   const [name, setName] = useState("");
@@ -21,7 +25,7 @@ const RegisterPage = () => {
     }
     try {
       const response = await axios.post(
-        `https://self-assistant-ai-web-app-backend.vercel.app/user/register`,
+        `${process.env.REACT_APP_BASE_URL}/user/register`,
         {
           name,
           email,
@@ -47,7 +51,8 @@ const RegisterPage = () => {
   return (
     <div
       className="flex justify-center items-center bg-cover h-screen"
-      style={{ backgroundImage: `url(${backgroundImage})` }}>
+      style={{ backgroundImage: `url(${backgroundImage})` }}
+    >
       <div className="flex justify-center items-center w-4/5 h-4/5 m-4 p-4 bg-white rounded-xl">
         <div className="flex justify-center items-center w-3/5 mr-10 border-r-2 border-gray-300">
           <img src={loginImage} alt="Login" />
