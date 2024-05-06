@@ -15,7 +15,7 @@ function Dashboard() {
     try {
       const email = localStorage.getItem("email");
       const Annalys = await axios.get(
-        `${process.env.REACT_APP_BASE_URL}/annalys`,
+        `https://self-assistant-ai-web-app-backend-theta.vercel.app/annalys`,
         {
           params: { email: email },
         }
@@ -31,10 +31,13 @@ function Dashboard() {
   const resetCareerAnnalys = async () => {
     try {
       const email = localStorage.getItem("email");
-      await axios.put(`${process.env.REACT_APP_BASE_URL}/annalys`, {
-        email: email,
-        newCareerSummary: [],
-      });
+      await axios.put(
+        `https://self-assistant-ai-web-app-backend-theta.vercel.app/annalys`,
+        {
+          email: email,
+          newCareerSummary: [],
+        }
+      );
       fetchAnnalys();
     } catch (error) {
       console.error("Failed to reset career annalys:", error);
@@ -44,10 +47,13 @@ function Dashboard() {
   const resetTestAnnalys = async () => {
     try {
       const email = localStorage.getItem("email");
-      await axios.put(`${process.env.REACT_APP_BASE_URL}/annalys`, {
-        email: email,
-        newTestSummary: [],
-      });
+      await axios.put(
+        `https://self-assistant-ai-web-app-backend-theta.vercel.app/annalys`,
+        {
+          email: email,
+          newTestSummary: [],
+        }
+      );
       fetchAnnalys();
     } catch (error) {
       console.error("Failed to reset test annalys:", error);

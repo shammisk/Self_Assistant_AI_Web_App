@@ -23,7 +23,7 @@ function EditProfile() {
         }
 
         const response = await axios.get(
-          `${process.env.REACT_APP_BASE_URL}/user/getuserbyemail`,
+          `https://self-assistant-ai-web-app-backend-theta.vercel.app/user/getuserbyemail`,
           {
             params: { email },
           }
@@ -57,7 +57,7 @@ function EditProfile() {
 
     try {
       const response = await axios.put(
-        `${process.env.REACT_APP_BASE_URL}/user/update/${id}`,
+        `https://self-assistant-ai-web-app-backend-theta.vercel.app/user/update/${id}`,
         userData
       );
 

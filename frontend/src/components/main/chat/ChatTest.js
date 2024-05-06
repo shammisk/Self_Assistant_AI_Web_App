@@ -17,7 +17,7 @@ function ChatTest({ visible, onClose }) {
     try {
       const email = localStorage.getItem("email");
       const response = await axios.get(
-        `${process.env.REACT_APP_BASE_URL}/chat-test`,
+        `https://self-assistant-ai-web-app-backend-theta.vercel.app/chat-test`,
         {
           params: { email: email },
         }
@@ -37,7 +37,7 @@ function ChatTest({ visible, onClose }) {
       let response = null;
       if (chat) {
         response = await axios.put(
-          `${process.env.REACT_APP_BASE_URL}/chat-test`,
+          `https://self-assistant-ai-web-app-backend-theta.vercel.app/chat-test`,
           {
             id: chat._id,
             email: email,
@@ -47,7 +47,7 @@ function ChatTest({ visible, onClose }) {
         );
       } else {
         response = await axios.post(
-          `${process.env.REACT_APP_BASE_URL}/chat-test`,
+          `https://self-assistant-ai-web-app-backend-theta.vercel.app/chat-test`,
           {
             email: email,
             message: [messageTest.initial],
