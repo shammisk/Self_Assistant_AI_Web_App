@@ -1,10 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import backgroundImage from "../assests/images/c.png";
-import logo from "../assests/images/chatbot.png";
 import About from "../assests/images/a.jpg";
 import W1Image from "../assests/images/b.jpg";
+import backgroundImage from "../assests/images/c.png";
 import W2Image from "../assests/images/cc.png";
+import logo from "../assests/images/chatbot.png";
 
 const WelcomePage = () => {
   return (
@@ -50,9 +50,11 @@ const WelcomePage = () => {
                 About
                 <br />
                 <br />
-                "This platform combines a chat interface and a dashboard. It can
-                be assist you to testing the knowledge level in your skills and
-                providing career guidance with the AI technology."
+                "The platform combines a chat interface and dashboard to help
+                individuals entering the IT field test their knowledge levels in
+                skills and receive career guidance. Developed with the Google
+                Gemini API, it aims to provide personalized advice for
+                navigating a career in IT."
               </p>
             </div>
           </div>
@@ -73,9 +75,9 @@ const WelcomePage = () => {
                 <br />
                 <br />
                 "We provide personalized career guidance and advice based on
-                your interests and skills with AI technology. Additionally, we
-                provide recommendations to help you navigate and excel in your
-                career path."
+                your interests and skills with AI technology.
+                <br /> Additionally, we provide recommendations to help you
+                navigate and excel in your career path."
               </p>
             </div>
           </div>
@@ -104,7 +106,7 @@ const WelcomePage = () => {
       </div>
 
       <div className="pb-5 mt-4">
-        <div className="text-gray-700 text-sm font-semibold flex justify-center">
+        <div className="text-gray-400 text-sm font-semibold flex justify-center">
           Copyright © 2024 by Shammi Gamage, All rights reserved.
         </div>
         <div className="text-white text-md flex justify-center">

@@ -179,7 +179,7 @@ function ChatTest({ visible, onClose }) {
                 required={true}
               />
 
-              <div className="w-20 flex items-center bg-teal-500 rounded-r-md">
+              <div className="w-20 flex items-center bg-teal-500 hover:bg-teal-300 rounded-r-md">
                 <Button type="submit" name="Send" />
               </div>
             </form>
