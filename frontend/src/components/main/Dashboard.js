@@ -1,7 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import Button from "../Button";
-import Chart from "../Chart";
 
 function Dashboard() {
   const [careerAnnalys, setCareerAnnalys] = useState(null);
@@ -115,9 +114,9 @@ function Dashboard() {
                 </div>
               </div>
             ))}
-            <div className="rounded-md">
+            {/* <div className="rounded-md">
               <Chart type="pie" chartData={careerAnnalys} />
-            </div>
+            </div> */}
           </div>
         ) : (
           <div className="mt-1">
@@ -157,7 +156,7 @@ function Dashboard() {
                 <div>{item?.summary}</div>
               </div>
             ))}
-            <div className="mt-4 rounded-md">
+            {/* <div className="mt-4 rounded-md">
               <Chart type="column" chartData={testAnnalys} />
             </div>
             <div className="flex flex-row gap-4 justify-between bg-yellow-100 p-2">
@@ -165,7 +164,7 @@ function Dashboard() {
               <p>2 - Intermediate</p>
               <p>3 - Advanced</p>
               <p>4 - Expert</p>
-            </div>
+            </div> */}
           </div>
         ) : (
           <div className="mt-1">
