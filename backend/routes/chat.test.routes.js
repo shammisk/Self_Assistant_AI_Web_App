@@ -11,9 +11,11 @@ router.post("/", async (req, res) => {
   try {
     const { email, message, response } = req.body;
 
-    const skill = response[0].split(",")[0].trim();
+    const skill = response[0].match(/\w+\s*\d*/)?.[0].trim();
 
-    const textContent = await sendRequestToGemini(messageTest.promptGnerateInitialQuestion + " " + skill);
+    const textContent = await sendRequestToGemini(
+      messageTest.promptGnerateInitialQuestion + " " + skill
+    );
 
     message.push(textContent);
 
@@ -25,9 +27,13 @@ router.post("/", async (req, res) => {
 
     await chatMessage.save();
 
-    return res.status(201).json({ message: "Chat message created successfully", chatMessage });
+    return res
+      .status(201)
+      .json({ message: "Chat message created successfully", chatMessage });
   } catch (error) {
-    return res.status(500).json({ message: "Failed to create chat message", error: error.message });
+    return res
+      .status(500)
+      .json({ message: "Failed to create chat message", error: error.message });
   }
 });
 
@@ -42,8 +48,9 @@ router.put("/", async (req, res) => {
     }
 
     let prompt = "";
-    const skill = response[0].split(",")[0].trim();
-    const numQuestion = parseInt(response[0].split(",")[1].trim());
+    const skill = response[0].match(/\w+\s*\d*/)?.[0].trim();
+
+    const numQuestion = parseInt((response[0].match(/\d+/) || [10])[0]);
 
     if (numQuestion >= message.length) {
       for (let i = 0; i < Math.max(message.length, response.length); i++) {
@@ -76,12 +83,17 @@ router.put("/", async (req, res) => {
 
     const updatedChat = await ChatTest.findOneAndUpdate(
       { _id: id },
-      { message, response, disable: numQuestion + 2 > message.length ? false : true },
+      {
+        message,
+        response,
+        disable: numQuestion + 2 > message.length ? false : true,
+      },
       { new: true }
     );
 
     if (!(numQuestion + 2 > message.length)) {
-      const prompt = textContent + " " + messageTest.summaryAnalysis + " " + skill;
+      const prompt =
+        textContent + " " + messageTest.summaryAnalysis + " " + skill;
 
       const textSummary = await sendRequestToGemini(prompt);
 
@@ -104,9 +116,13 @@ router.put("/", async (req, res) => {
       }
     }
 
-    return res.status(200).json({ message: "Chat message updated successfully", updatedChat });
+    return res
+      .status(200)
+      .json({ message: "Chat message updated successfully", updatedChat });
   } catch (error) {
-    return res.status(500).json({ message: "Failed to update chat message", error: error.message });
+    return res
+      .status(500)
+      .json({ message: "Failed to update chat message", error: error.message });
   }
 });
 
@@ -121,11 +137,16 @@ router.get("/", async (req, res) => {
       return res.status(404).json({ message: "User not found" });
     }
 
-    const chat = await ChatTest.findOne({ email }).sort({ timestamp: -1 }).limit(1);
+    const chat = await ChatTest.findOne({ email })
+      .sort({ timestamp: -1 })
+      .limit(1);
 
     return res.status(200).json(chat);
   } catch (error) {
-    return res.status(500).json({ message: "Failed to retrieve chat messages", error: error.message });
+    return res.status(500).json({
+      message: "Failed to retrieve chat messages",
+      error: error.message,
+    });
   }
 });
 
@@ -144,9 +165,13 @@ router.delete("/", async (req, res) => {
       return res.status(404).json({ message: "Chat message not found" });
     }
 
-    return res.status(200).json({ message: "Chat message deleted successfully", deletedChat });
+    return res
+      .status(200)
+      .json({ message: "Chat message deleted successfully", deletedChat });
   } catch (error) {
-    return res.status(500).json({ message: "Failed to delete chat message", error: error.message });
+    return res
+      .status(500)
+      .json({ message: "Failed to delete chat message", error: error.message });
   }
 });
 
