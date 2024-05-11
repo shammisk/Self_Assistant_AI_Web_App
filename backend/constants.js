@@ -13,7 +13,7 @@ const messageTest = {
   promptGnerateInitialQuestion:
     "I want to check my knowledge level. For that I will provide the skill that I want to check. You can ask questions from me one by one to test the knowledege.Ask one question at a time. Let's start. Ask the first question. Theory question. The skill is ",
   promptGnerateNextQuestion:
-    "Do not provide the previous question answer. Provide another different only question for skill level tester. Please provide one question at once. Okay give next question. Code question. please ask question alternately",
+    "Do not provide the previous question answer. Provide another different only question for skill level tester. Please provide one question at once. Okay give next question. Code question. please ask question alternately The skill is",
   promptAnalysis:
     "Give the each question and answer correct ot not and also give the explanation for each question. Finally According to the above question and answer list, determine the what is the skill level (Beginner, Intermediate, Advanced or Expert) and provide tha in the last line by formatting skill name : skill level. the skill is",
   summaryAnalysis:
