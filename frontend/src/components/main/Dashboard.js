@@ -13,12 +13,9 @@ function Dashboard() {
   const fetchAnnalys = async () => {
     try {
       const email = localStorage.getItem("email");
-      const Annalys = await axios.get(
-        `https://self-assistant-ai-web-app-backend-theta.vercel.app/annalys`,
-        {
-          params: { email: email },
-        }
-      );
+      const Annalys = await axios.get(`https://self-assistant-ai-web-app-backend-theta.vercel.app/annalys`, {
+        params: { email: email },
+      });
 
       setCareerAnnalys(Annalys.data?.careerAnnalys);
       setTestAnnalys(Annalys.data?.testAnnalys);
@@ -30,13 +27,10 @@ function Dashboard() {
   const resetCareerAnnalys = async () => {
     try {
       const email = localStorage.getItem("email");
-      await axios.put(
-        `https://self-assistant-ai-web-app-backend-theta.vercel.app/annalys`,
-        {
-          email: email,
-          newCareerSummary: [],
-        }
-      );
+      await axios.put(`https://self-assistant-ai-web-app-backend-theta.vercel.app/annalys`, {
+        email: email,
+        newCareerSummary: [],
+      });
       fetchAnnalys();
     } catch (error) {
       console.error("Failed to reset career annalys:", error);
@@ -46,13 +40,10 @@ function Dashboard() {
   const resetTestAnnalys = async () => {
     try {
       const email = localStorage.getItem("email");
-      await axios.put(
-        `https://self-assistant-ai-web-app-backend-theta.vercel.app/annalys`,
-        {
-          email: email,
-          newTestSummary: [],
-        }
-      );
+      await axios.put(`https://self-assistant-ai-web-app-backend-theta.vercel.app/annalys`, {
+        email: email,
+        newTestSummary: [],
+      });
       fetchAnnalys();
     } catch (error) {
       console.error("Failed to reset test annalys:", error);
@@ -61,10 +52,9 @@ function Dashboard() {
 
   return (
     <div
-      className="flex flex-row gap-4 px-8 py-4 h-screen overflow-auto"
-      style={{ maxHeight: "100%" }}
-    >
-      <div className="flex flex-col w-1/2 p-4 bg-green-200 rounded-md shadow-md overflow-auto">
+      className="flex flex-col lg:flex-row gap-4 px-8 py-4 h-screen overflow-auto"
+      style={{ maxHeight: "100%" }}>
+      <div className="flex flex-col w-full lg:w-1/2 p-4 bg-green-200 rounded-md shadow-md overflow-auto">
         <h1 className="text-gray-500 font-bold tracking-wider underline text-xl text-center">
           Career Guidance Analysis
         </h1>
@@ -73,17 +63,13 @@ function Dashboard() {
           <div className="flex flex-col ml-4 mt-2">
             <div className="flex justify-end">
               <div className="w-20">
-                <Button
-                  type="button"
-                  name="Reset"
-                  onClick={resetCareerAnnalys}
-                />
+                <Button type="button" name="Reset" onClick={resetCareerAnnalys} />
               </div>
             </div>
 
             {careerAnnalys?.map((item, idx) => (
-              <div>
-                <div className="flex flex-row gap-10 mt-2 mb-5" key={idx}>
+              <div key={idx}>
+                <div className="flex flex-row gap-10 mt-2 mb-5">
                   <div>
                     <div>
                       {new Date(item?.date).toLocaleDateString(undefined, {
@@ -104,9 +90,7 @@ function Dashboard() {
                       return (
                         <div key={index}>
                           <span>{profession}</span> : <span>{score} %</span>
-                          {index !== item.summary.split(",").length - 1 && (
-                            <br />
-                          )}{" "}
+                          {index !== item.summary.split(",").length - 1 && <br />}{" "}
                         </div>
                       );
                     })}
@@ -119,13 +103,11 @@ function Dashboard() {
             </div> */}
           </div>
         ) : (
-          <div className="mt-1">
-            Please first go to chat and follow the steps...
-          </div>
+          <div className="mt-1">Please first go to chat and follow the steps...</div>
         )}
       </div>
 
-      <div className="flex flex-col w-1/2 p-4 bg-green-200 rounded-md shadow-md overflow-auto">
+      <div className="flex flex-col w-full lg:w-1/2 p-4 bg-green-200 rounded-md shadow-md overflow-auto">
         <h1 className="text-gray-500 font-bold tracking-wider underline text-xl text-center">
           Knowledge Test Analysis
         </h1>
@@ -167,9 +149,7 @@ function Dashboard() {
             </div> */}
           </div>
         ) : (
-          <div className="mt-1">
-            Please first go to chat and follow the steps...
-          </div>
+          <div className="mt-1">Please first go to chat and follow the steps...</div>
         )}
       </div>
     </div>

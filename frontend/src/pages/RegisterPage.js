@@ -1,8 +1,4 @@
-import {
-  EnvelopeIcon,
-  LockClosedIcon,
-  UserIcon,
-} from "@heroicons/react/24/outline";
+import { EnvelopeIcon, LockClosedIcon, UserIcon } from "@heroicons/react/24/outline";
 import axios from "axios";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
@@ -24,14 +20,11 @@ const RegisterPage = () => {
       return;
     }
     try {
-      const response = await axios.post(
-        `${process.env.REACT_APP_BASE_URL}/user/register`,
-        {
-          name,
-          email,
-          password,
-        }
-      );
+      const response = await axios.post(`${process.env.REACT_APP_BASE_URL}/user/register`, {
+        name,
+        email,
+        password,
+      });
 
       setName("");
       setEmail("");
@@ -51,13 +44,12 @@ const RegisterPage = () => {
   return (
     <div
       className="flex justify-center items-center bg-cover h-screen"
-      style={{ backgroundImage: `url(${backgroundImage})` }}
-    >
-      <div className="flex justify-center items-center w-4/5 h-4/5 m-4 p-4 bg-white rounded-xl">
-        <div className="flex justify-center items-center w-3/5 mr-10 border-r-2 border-gray-300">
+      style={{ backgroundImage: `url(${backgroundImage})` }}>
+      <div className="flex flex-col md:flex-row justify-center items-center w-full md:w-4/5 md:h-4/5 m-10 md:m-4 p-4 bg-white rounded-xl">
+        <div className="flex justify-center items-center w-full md:w-3/5 md:mr-10 md:border-r-2 md:border-gray-300">
           <img src={loginImage} alt="Login" />
         </div>
-        <div className="w-2/5">
+        <div className="w-full md:w-2/5">
           <form className="mr-10 ml-4" onSubmit={handleSubmit}>
             <p className="font-sans text-gray-400 text-xl text-center font-semibold tracking-widest mb-5">
               REGISTER!

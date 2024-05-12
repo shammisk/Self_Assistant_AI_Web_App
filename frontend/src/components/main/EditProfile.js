@@ -1,8 +1,4 @@
-import {
-  EnvelopeIcon,
-  LockClosedIcon,
-  UserIcon,
-} from "@heroicons/react/24/outline";
+import { EnvelopeIcon, LockClosedIcon, UserIcon } from "@heroicons/react/24/outline";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import Button from "../Button";
@@ -22,12 +18,9 @@ function EditProfile() {
           alert("Email is required");
         }
 
-        const response = await axios.get(
-          `${process.env.REACT_APP_BASE_URL}/user/getuserbyemail`,
-          {
-            params: { email },
-          }
-        );
+        const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/user/getuserbyemail`, {
+          params: { email },
+        });
 
         setId(response.data.user._id);
         setName(response.data.user.name);
@@ -56,10 +49,7 @@ function EditProfile() {
     };
 
     try {
-      const response = await axios.put(
-        `${process.env.REACT_APP_BASE_URL}/user/update/${id}`,
-        userData
-      );
+      const response = await axios.put(`${process.env.REACT_APP_BASE_URL}/user/update/${id}`, userData);
 
       alert(response?.data?.message);
     } catch (error) {
@@ -68,7 +58,7 @@ function EditProfile() {
   };
 
   return (
-    <div className="px-80 mt-10">
+    <div className=" mt-10">
       {/* <div className="flex flex-row justify-center items-center">
         <h2>Change Profile Picture:</h2>
         <div className="w-20 mt-4 ml-5">
@@ -80,18 +70,8 @@ function EditProfile() {
         <p className="font-sans text-gray-400 text-lg text-center font-semibold tracking-widest mb-10">
           Update Your Information
         </p>
-        <form
-          className="flex flex-col gap-4 mr-10 ml-4"
-          onSubmit={handleUpdate}
-        >
-          <TextBox
-            label="Name"
-            type="text"
-            Icon={UserIcon}
-            value={name}
-            setValue={setName}
-            required={true}
-          />
+        <form className="flex flex-col gap-4 mr-10 ml-4" onSubmit={handleUpdate}>
+          <TextBox label="Name" type="text" Icon={UserIcon} value={name} setValue={setName} required={true} />
 
           <TextBox
             label="Email"
