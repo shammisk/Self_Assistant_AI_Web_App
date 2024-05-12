@@ -16,12 +16,9 @@ function ChatGuide({ visible, onClose }) {
   const fetchChats = async () => {
     try {
       const email = localStorage.getItem("email");
-      const response = await axios.get(
-        `${process.env.REACT_APP_BASE_URL}/chat-guide`,
-        {
-          params: { email: email },
-        }
-      );
+      const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/chat-guide`, {
+        params: { email: email },
+      });
 
       setChat(response.data);
       setLoading(false);
@@ -36,24 +33,18 @@ function ChatGuide({ visible, onClose }) {
       setLoading(true);
       let response = null;
       if (chat) {
-        response = await axios.put(
-          `${process.env.REACT_APP_BASE_URL}/chat-guide`,
-          {
-            id: chat._id,
-            email: email,
-            message: chat.message,
-            response: [...chat.response, chatInput],
-          }
-        );
+        response = await axios.put(`${process.env.REACT_APP_BASE_URL}/chat-guide`, {
+          id: chat._id,
+          email: email,
+          message: chat.message,
+          response: [...chat.response, chatInput],
+        });
       } else {
-        response = await axios.post(
-          `${process.env.REACT_APP_BASE_URL}/chat-guide`,
-          {
-            email: email,
-            message: [messageGuide.initial],
-            response: [chatInput],
-          }
-        );
+        response = await axios.post(`${process.env.REACT_APP_BASE_URL}/chat-guide`, {
+          email: email,
+          message: [messageGuide.initial],
+          response: [chatInput],
+        });
       }
       if (response) {
         setChatInput("");
@@ -75,20 +66,14 @@ function ChatGuide({ visible, onClose }) {
               <Button type="button" name="Back" onClick={onClose} />
             </div>
             <div className="w-32">
-              <Button
-                type="button"
-                name="New Chat"
-                onClick={() => setChat(null)}
-              />
+              <Button type="button" name="New Chat" onClick={() => setChat(null)} />
             </div>
           </div>
 
           <div className="flex flex-col gap-4 overflow-y-auto mb-10">
             {!chat && (
               <div className="flex justify-start">
-                <div className="rounded-lg p-2 bg-green-200 text-left mr-2 w-2/3">
-                  {messageGuide.initial}
-                </div>
+                <div className="rounded-lg p-2 bg-green-200 text-left mr-2 w-2/3">{messageGuide.initial}</div>
               </div>
             )}
 
@@ -97,19 +82,13 @@ function ChatGuide({ visible, onClose }) {
                 {chat.message.map((message, index) => (
                   <div key={index}>
                     <div className={"flex justify-start"}>
-                      <div
-                        className={
-                          "p-2 bg-green-200 w-2/3 rounded-md shadow-md"
-                        }
-                      >
+                      <div className={"p-2 bg-green-200 w-11/12 md:w-2/3 rounded-md shadow-md"}>
                         {message.includes("\n**") ? (
                           message.split("\n").map((line, idx) => {
                             if (line.startsWith("**")) {
                               return (
                                 <div key={idx}>
-                                  <strong>
-                                    {line.trim().replace(/\*+/g, "")}
-                                  </strong>
+                                  <strong>{line.trim().replace(/\*+/g, "")}</strong>
                                   <br />
                                 </div>
                               );
@@ -117,12 +96,7 @@ function ChatGuide({ visible, onClose }) {
                               return (
                                 <div key={idx}>
                                   {line.substring(0, 2)}
-                                  <strong>
-                                    {line.substring(
-                                      2,
-                                      line.lastIndexOf(":") + 1
-                                    )}
-                                  </strong>
+                                  <strong>{line.substring(2, line.lastIndexOf(":") + 1)}</strong>
                                   {line.substring(line.lastIndexOf(":") + 1)}
                                   <br />
                                 </div>
@@ -143,11 +117,7 @@ function ChatGuide({ visible, onClose }) {
                     </div>
                     {chat.response[index] && (
                       <div className="flex justify-end mt-5">
-                        <div
-                          className={
-                            "p-2 bg-blue-200 w-2/3 rounded-md shadow-md"
-                          }
-                        >
+                        <div className={"p-2 bg-blue-200 w-11/12 md:w-2/3 rounded-md shadow-md"}>
                           {chat.response[index]}
                         </div>
                       </div>
@@ -158,9 +128,7 @@ function ChatGuide({ visible, onClose }) {
             )}
           </div>
 
-          {loading ? (
-            <div className="mt-10 text-blue-500">Waiting...</div>
-          ) : null}
+          {loading ? <div className="mt-10 text-blue-500">Waiting...</div> : null}
 
           {chat?.disable ? null : (
             <form
@@ -168,8 +136,7 @@ function ChatGuide({ visible, onClose }) {
               onSubmit={async (e) => {
                 e.preventDefault();
                 await handleSend();
-              }}
-            >
+              }}>
               <TextArea
                 type="text"
                 value={chatInput}

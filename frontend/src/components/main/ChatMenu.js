@@ -10,9 +10,9 @@ const ChatMenu = () => {
   return (
     <div className="py-4 px-10 overflow-auto h-full">
       {!chatType && (
-        <div className="flex flex-row gap-10 mb-2">
-          <div className="w-1/2">
-            <div className="h-40 border border-gray-500 p-4 mb-5 rounded-md shadow-md bg-green-300 bg-opacity-80">
+        <div className="flex flex-col md:flex-row gap-10 mb-2">
+          <div className="w-fll md:w-1/2">
+            <div className="min-h-40 border border-gray-500 p-4 mb-5 rounded-md shadow-md bg-green-300 bg-opacity-80">
               <p className="text-black text-md text-justify">
                 Do you want career guidance?
                 <br />
@@ -32,8 +32,8 @@ const ChatMenu = () => {
               }}
             />
           </div>
-          <div className="w-1/2">
-            <div className="h-40 border border-gray-500 p-4 mb-5 rounded-md shadow-md bg-green-300 bg-opacity-80">
+          <div className="w-fll md:w-1/2">
+            <div className="min-h-40 border border-gray-500 p-4 mb-5 rounded-md shadow-md bg-green-300 bg-opacity-80">
               <p className="text-black text-md text-justify">
                 Do you want to test your knowledge level in skills?
                 <br />
